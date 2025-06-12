@@ -63,3 +63,24 @@ Output: Word with the letters t, i, gg and er removed
 Strat: Iterate over the letters in the word and look for the ones listed
 '''
  
+def tiggerfy(word):
+    word = word.lower()
+    result = ''
+    i = 0
+    # Using a while loop to control how many chars to skip
+    while i < len(word):
+        if word[i] in ['t', 'i']:
+            i += 1
+            continue
+        # We check from the word's index [i to i+2), this wouldn't cause an Out of Range error too
+        elif word[i:i+2] == 'gg':
+            i += 2
+            continue
+        elif word[i:i+2] == 'er':
+            i += 2
+            continue
+        else:
+            result += word[i]
+            i += 1
+    return print(result) # works
+
