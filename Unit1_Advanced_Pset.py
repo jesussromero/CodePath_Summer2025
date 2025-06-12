@@ -84,3 +84,36 @@ def tiggerfy(word):
             i += 1
     return print(result) # works
 
+'''
+Given an array nums with n integers,
+write a function non_decreasing() that checks if nums could become non-decreasing
+by modifying at most one element.
+
+We define an array is non-decreasing if nums[i] <= nums[i + 1] holds for every i (0-based)
+such that (0 <= i <= n - 2).
+
+nums = [4, 2, 3]
+non_decreasing(nums)
+
+nums = [4, 2, 1]
+non_decreasing(nums)
+
+nums = [2, 3, 1]
+nums = [1, 2, 1, 4]
+
+input: list of numbers
+output: a boolean that determines whether the list is in ascending order and if not, if modifying
+one value is enough to make it ascending
+strat: look for the highest value number and check if the following elements meet the condition.
+'''
+def non_decreasing(nums):
+    max = 0
+    state = True
+    previous = nums[0]
+    for number in nums:
+        if number > max:
+            max == number
+            continue
+        if previous > number:
+            return False
+        
