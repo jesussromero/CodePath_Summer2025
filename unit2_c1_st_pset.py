@@ -40,3 +40,30 @@ def get_artist_info(artist, festival_schedule):
     not_found_dict = {"message": "Artist not found"}
     return festival_schedule.get(artist, not_found_dict) # Works
 
+'''
+Problem 3: Ticket Sales
+A dictionary ticket_sales is used to map ticket type to number of tickets sold. 
+Return the total number of tickets of all types sold.
+'''
+
+def total_sales(ticket_sales):
+    total = 0
+    return sum(ticket_sales.values()) # Works
+
+'''
+Problem 4: Scheduling Conflict
+
+Demand for your festival has exceeded expectations, so you're expanding the festival to span two different venues.
+Some artists will perform both venues, while others will perform at just one.
+To ensure that there are no scheduling conflicts, implement a function identify_conflicts()
+that accepts two dictionaries venue1_schedule and venue2_schedule each mapping the artists playing at the venue to their set times.
+Return a dictionary containing the key-value pairs that are the same in each schedule.
+
+Input: Two dictionaries with key, value pairs
+Output: Intersection of these two dictionaries
+Strat: Use & to create tuples and return the dictionary of it
+'''
+
+def identify_conflicts(venue1_schedule, venue2_schedule):
+    result = venue1_schedule.items() & venue2_schedule.items()
+    return dict(result) # Works
