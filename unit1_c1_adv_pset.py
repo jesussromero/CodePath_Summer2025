@@ -106,14 +106,5 @@ output: a boolean that determines whether the list is in ascending order and if 
 one value is enough to make it ascending
 strat: look for the highest value number and check if the following elements meet the condition.
 '''
-def non_decreasing(nums):
-    max = 0
-    state = True
-    previous = nums[0]
-    for number in nums:
-        if number > max:
-            max == number
-            continue
-        if previous > number:
-            return False
+
         
