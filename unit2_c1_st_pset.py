@@ -67,3 +67,15 @@ Strat: Use & to create tuples and return the dictionary of it
 def identify_conflicts(venue1_schedule, venue2_schedule):
     result = venue1_schedule.items() & venue2_schedule.items()
     return dict(result) # Works
+
+'''
+Problem 5: Best Set
+
+As part of the festival, attendees cast votes for their favorite set.
+Given a dictionary votes that maps attendees id numbers to the artist they voted for,
+return the artist that had the most number of votes.
+If there is a tie, return any artist with the top number of votes.
+'''
+
+def best_set(votes):
+    pass
