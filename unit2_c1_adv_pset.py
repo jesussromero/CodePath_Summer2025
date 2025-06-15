@@ -1,3 +1,5 @@
+
+from collections import Counter
 '''
 Problem 1: Counting Treasure
 Captain Blackbeard has a treasure map with several clues that point to different locations on an island.
@@ -332,3 +334,13 @@ Example Output:
 [0, 2, 0, 0, 0]
 [1, 1, 0, 0]
 '''
+
+
+def find_balanced_subsequence(art_pieces):
+    freq_map = Counter(art_pieces)
+    maxLength = 0
+    for key, value in freq_map.items():
+        if (key + 1) in freq_map:
+            maxLength = max(maxLength, len(value) + len(freq_map[key + 1]))
+    return freq_map
+                
