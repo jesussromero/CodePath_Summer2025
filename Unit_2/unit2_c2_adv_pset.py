@@ -30,12 +30,14 @@ from collections import Counter
 
 def find_balanced_subsequence(art_pieces):
     freq_map = Counter(art_pieces)
+    print(freq_map)
     maxLength = 0
     for key, value in freq_map.items():
         if (key + 1) in freq_map:
             maxLength = max(maxLength, value + freq_map[key + 1])
     return maxLength
-                
+
+           
 '''
 Problem 2: Verifying Authenticity
 
