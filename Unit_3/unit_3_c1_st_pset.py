@@ -31,14 +31,21 @@ False
 def is_valid_post_format(posts):
     invalid_starting = ["}", "]", ")"]
     valid_start = {")":"(", "]":"[", "}":"{"}
-    my_stack = []
-    # Immediately return if it starts with a closing bracket 
+    my_helper = []
+    # Immediately return if it starts with a closing bracket or length is less than 1
     if posts[0] in invalid_starting or len(posts) <= 1:
         return False
     # Iterate over all of the characters in the string
-    for char in posts:
+    for ch in posts:
+        if ch in valid_start.values():
+            my_helper.append(ch)
+        else:
+            if not my_helper or my_helper.pop() != valid_start.get(ch):
+                return False
+    return True
+
         
 
 print(is_valid_post_format("()"))
-print(is_valid_post_format("()[]{}")) 
+print(is_valid_post_format("()[]{}")) # what if: ([{}])
 print(is_valid_post_format("(]"))
