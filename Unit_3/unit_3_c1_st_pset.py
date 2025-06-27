@@ -120,5 +120,150 @@ def is_symmetrical_title(title):
             right -= 1
     return True # Works
 
-print(is_symmetrical_title("A Santa at NASA"))
-print(is_symmetrical_title("Social Media")) 
+'''
+P4
+'''
+
+def engagement_boost(engagements):
+    n = len(engagements)
+    result = [0] * n
+    left = 0
+    right = n - 1
+    position = n - 1 
+
+    while left <= right:
+        if abs(engagements[left]) > abs(engagements[right]):
+            result[position] = engagements[left] ** 2
+            left += 1
+        else:
+            result[position] = engagements[right] ** 2
+            right -= 1
+        position -= 1
+
+    return result
+
+'''
+Problem 5: Content Cleaner
+You want to make sure your posts are clean and professional. Given a string post of lowercase and 
+uppercase English letters, you want to remove any pairs of adjacent characters where one is the 
+lowercase version of a letter and the other is the uppercase version of the same letter. Keep 
+removing such pairs until the post is clean.
+
+A clean post does not have two adjacent characters post[i] and post[i + 1] where:
+
+post[i] is a lowercase letter and post[i + 1] is the same letter in uppercase or vice-versa.
+Return the clean post.
+
+Note that an empty string is also considered clean.
+
+print(clean_post("poOost")) 
+print(clean_post("abBAcC")) 
+print(clean_post("s")) 
+Example Output:
+
+post
+
+s
+'''
+# U: we receive a string as an input and are expected to output the "cleaned" string which follow 
+#    the rule of not having the same character with the uppercase version of it adjacent to the right
+# M: Running a for loop, adding elements to the stack. Peek for the previous element added, and if it
+#    is the same as the current one but uppercase or lowercase, we pop it.
+def clean_post(post):
+    my_stack = []
+    for ch in post:
+        if not my_stack:
+            my_stack.append(ch)
+        else:
+            if ch.islower():
+                if my_stack[-1] == ch.upper():
+                    my_stack.pop()
+                    continue
+            elif ch.isupper():
+                if my_stack[-1] == ch.lower():
+                    my_stack.pop()
+                    continue
+            my_stack.append(ch)
+    return "".join(my_stack)
+
+'''
+Problem 6: Post Editor
+You want to add a creative twist to your posts by reversing the order of characters in each word 
+within your post while still preserving whitespace and the initial word order. Given a string post, 
+use a queue to reverse the order of characters in each word within the sentence.
+
+Example Usage:
+
+print(edit_post("Boost your engagement with these tips")) 
+print(edit_post("Check out my latest vlog")) 
+Example Output:
+
+tsooB ruoy tnemegegna htiw esehT spit
+kcehC tuo ym tseval golv
+'''
+# U: We are given a string and expected to reverse every word as an output
+# M: We can iterate over every word and reverse it using a deque. If it's a space, we just skip the
+#    iteration
+def edit_post(post):
+    my_deque = deque()
+    result = ''
+    for i in range(len(post)):
+        if post[i] == " " or i == len(post)-1:
+            if i == len(post)-1:
+                my_deque.append(post[i])
+            for j in range(len(my_deque)):
+                result += my_deque.pop()
+            if post[i] == " ":
+                result += post[i]
+            my_deque.clear()
+        else:
+            my_deque.append(post[i])
+    return result
+
+'''
+Problem 7: Post Compare
+You often draft your posts and edit them before publishing. 
+Given two draft strings draft1 and draft2, return true if they are equal when both are typed 
+into empty text editors. '#' means a backspace character.
+
+Note that after backspacing an empty text, the text will remain empty.
+
+Example Usage:
+
+print(post_compare("ab#c", "ad#c"))
+print(post_compare("ab##", "c#d#")) 
+print(post_compare("a#c", "b")) 
+Example Output:
+
+True
+True
+False
+
+'''
+def post_compare(draft1, draft2):
+    my_stack = []
+    my_stack2 = []
+
+    for ch in draft1:
+        if not my_stack:
+            my_stack.append(ch)
+        else:
+            if (ch == "#"):
+                my_stack.pop()
+            else:
+                my_stack.append(ch)
+
+    for ch in draft2:
+        if not my_stack2:
+            my_stack2.append(ch)
+        else:
+            if (ch == "#"):
+                my_stack2.pop()
+            else:
+                my_stack2.append(ch)
+                 
+    return my_stack == my_stack2
+
+print(post_compare("ab#c", "ad#c"))
+print(post_compare("ab##", "c#d#")) 
+print(post_compare("a#c", "b")) 
